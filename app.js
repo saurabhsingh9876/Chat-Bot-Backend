@@ -24,18 +24,7 @@ app.use(cors());
 
 
 
-app.post('/',(req,res)=>{
-  (async () => {
-    const genAI = new GoogleGenerativeAI("AIzaSyCdX8IuHYAP9N0m4xB2DW_Qq6Gsn_vvXlU");
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const {question}=req.body;
-    const prompt = question
-    
-    const result =  await model.generateContent(prompt);
-    res.status(200).json({data:result.response.text()});
-    })();
 
-})
 app.use(morgan("dev"));
 app.use('/auth', authRouter);
 app.use("/api/chat", chatRoutes);
